@@ -13,7 +13,7 @@ class LoginController {
     const { email, password } = req.body;
     const userToken = await this.service.login({ email, password });
 
-    if (!userToken) return res.status(400).json({ message: 'All fields must be filled' });
+    if (!userToken) return res.status(401).json({ message: 'Invalid email or password' });
 
     const { id, username } = userToken;
     const token = jwtCreate({ id, username });
