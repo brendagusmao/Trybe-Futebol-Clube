@@ -15,8 +15,8 @@ export default (req: Request, res: Response, next: NextFunction) => {
     return res.status(401).json({ message: 'Invalid email or password' });
   }
   if (password.length < 6) {
-    return res.status(422)
-      .json({ messsage: '"password" length must be at least 6 characters long' });
+    return res.status(401)
+      .json({ message: 'Invalid email or password' });
   }
 
   next();

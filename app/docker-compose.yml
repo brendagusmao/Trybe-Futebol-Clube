@@ -26,9 +26,9 @@ services:
     # command: dev 
     # volumes: 
     # - ./backend/src:/app-backend/src
-    # depends_on:
-    #   db:
-    #     condition: service_healthy
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
       - APP_PORT=3001
       - JWT_SECRET=jwt_secret
