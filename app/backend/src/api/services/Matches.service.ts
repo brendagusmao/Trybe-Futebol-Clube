@@ -23,6 +23,10 @@ class MatchService {
 
     return allMatches;
   };
+
+  public finishMatch = async (id: number) => {
+    await matches.update({ inProgress: false }, { where: { id } });
+  };
 }
 
 export default MatchService;
