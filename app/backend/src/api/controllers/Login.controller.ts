@@ -15,10 +15,15 @@ class LoginController {
 
     if (!userToken) return res.status(401).json({ message: 'Invalid email or password' });
 
-    const { id, username } = userToken;
-    const token = jwtCreate({ id, username });
+    const { id, username, role } = userToken;
+    const token = jwtCreate({ id, username, role });
 
     return res.status(200).json({ token });
+  };
+
+  public ValidateToken = async (req: Request, res: Response) => {
+    const { role } = req.body.user;
+    return res.status(200).json({ role });
   };
 }
 
