@@ -2,7 +2,7 @@ import teams from '../../database/models/TeamModel';
 import matches from '../../database/models/MatchModel';
 
 class MatchService {
-  public getMatchs = async () => {
+  public getMatchs = async (inProgress?: string) => {
     const allMatches = await matches.findAll({
       include: [
         {
@@ -17,6 +17,10 @@ class MatchService {
         },
       ],
     });
+    if (inProgress) {
+      return allMatches.filter((match) => String(match.inProgress) === inProgress);
+    }
+
     return allMatches;
   };
 }

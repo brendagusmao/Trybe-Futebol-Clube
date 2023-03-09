@@ -9,7 +9,8 @@ class MatchesController {
   }
 
   public getAllTeam = async (req: Request, res: Response) => {
-    const matchs = await this.service.getMatchs();
+    const { inProgress } = req.query;
+    const matchs = await this.service.getMatchs(inProgress as string);
     res.status(200).json(matchs);
   };
 }
