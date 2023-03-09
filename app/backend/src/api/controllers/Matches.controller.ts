@@ -26,6 +26,22 @@ class MatchesController {
     await this.service.updateMatch(id, homeTeamGoals, awayTeamGoals);
     return res.status(200).json({ message: 'update successfully' });
   };
+
+  public createMatches = async (req: Request, res: Response):Promise<Response | void> => {
+    const { homeTeamId,
+      awayTeamId,
+      homeTeamGoals,
+      awayTeamGoals } = req.body;
+
+    const match = await this.service.createMatch({
+      homeTeamId,
+      awayTeamId,
+      homeTeamGoals,
+      awayTeamGoals,
+    });
+
+    res.status(201).json(match);
+  };
 }
 
 export default MatchesController;

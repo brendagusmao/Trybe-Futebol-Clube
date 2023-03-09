@@ -1,5 +1,6 @@
 import teams from '../../database/models/TeamModel';
 import matches from '../../database/models/MatchModel';
+import IMatchCredentials from '../interfaces/IMatches';
 
 class MatchService {
   public getMatchs = async (inProgress?: string) => {
@@ -30,6 +31,12 @@ class MatchService {
 
   public updateMatch = async (id: string, homeTeamGoals: number, awayTeamGoals: number) => {
     await matches.update({ homeTeamGoals, awayTeamGoals }, { where: { id } });
+  };
+
+  public createMatch = async (match: IMatchCredentials): Promise<matches> => {
+    const newMatche = await matches.create({ ...match, inProgress: true });
+    console.log('aqui', newMatche);
+    return newMatche;
   };
 }
 
