@@ -1,11 +1,16 @@
 import { Request, Response } from 'express';
 import MatchesService from '../services/Matches.service';
+import TeamRepository from '../services/Team.service';
+
+// const teams = new TeamRepository();
 
 class MatchesController {
   public service: MatchesService;
+  public teams: TeamRepository;
 
   constructor() {
     this.service = new MatchesService();
+    this.teams = new TeamRepository();
   }
 
   public getAllMatches = async (req: Request, res: Response) => {
@@ -32,6 +37,13 @@ class MatchesController {
       awayTeamId,
       homeTeamGoals,
       awayTeamGoals } = req.body;
+
+    // const home = await teams.getIdTeam(homeTeamId);
+    // const away = await teams.getIdTeam(awayTeamId);
+
+    // if (!home || !away) {
+    //   return res.status(404).json({ message: 'There is no team with such id!' });
+    // }
 
     const match = await this.service.createMatch({
       homeTeamId,

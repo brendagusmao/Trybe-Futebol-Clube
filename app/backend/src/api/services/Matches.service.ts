@@ -35,7 +35,6 @@ class MatchService {
 
   public createMatch = async (match: IMatchCredentials): Promise<matches> => {
     const newMatche = await matches.create({ ...match, inProgress: true });
-    console.log('aqui', newMatche);
     return newMatche;
   };
 }
