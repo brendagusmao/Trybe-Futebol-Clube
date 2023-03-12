@@ -11,17 +11,18 @@ export interface ILeaderBoadDTO {
   efficiency: string;
 }
 
-export interface IMatcheBoard {
+export interface IHomeMatch {
   id: number;
-  homeTeam?: number;
+  homeTeamId: number;
+  homeTeam: number;
   homeTeamGoals: number;
-  awayTeam?: number;
+  awayTeam: number;
   awayTeamGoals: number;
-  inProgress: boolean;
-  teamHome?: {
+  inProgress?: boolean;
+  teamHome: {
     teamName: string;
   };
-  teamAway?: {
+  teamAway: {
     teamName: string;
   };
 }
